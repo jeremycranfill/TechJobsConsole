@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TechJobsConsole
 {
@@ -118,7 +119,24 @@ namespace TechJobsConsole
 
         private static void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
-            Console.WriteLine("printJobs is not implemented yet");
+
+            if (!someJobs.Any()) 
+            {
+                // send error if nothing in list
+                Console.WriteLine("Nothing found");
+            }
+
+            foreach (Dictionary<string, string> job in someJobs) 
+            {
+               Console.WriteLine("*******");
+                foreach (KeyValuePair<string, string> kvp in job) 
+                {
+                    Console.WriteLine(kvp);
+                }
+             
+
+
+            }
         }
     }
 }

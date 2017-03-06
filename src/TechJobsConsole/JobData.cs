@@ -138,5 +138,18 @@ namespace TechJobsConsole
 
             return rowValues.ToArray();
         }
+
+        public static void FindByValue()
+        {
+
+
+        }
+
+
+
+
+
     }
+
+
 }
