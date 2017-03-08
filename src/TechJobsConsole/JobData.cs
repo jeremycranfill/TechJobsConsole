@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
+using System;
 
 namespace TechJobsConsole
 {
@@ -13,6 +15,7 @@ namespace TechJobsConsole
         public static List<Dictionary<string, string>> FindAll()
         {
             LoadData();
+
             return AllJobs;
         }
 
@@ -25,6 +28,7 @@ namespace TechJobsConsole
             LoadData();
 
             List<string> values = new List<string>();
+            List<Dictionary<string, string>> AllJobCopy = AllJobs.ToList();
 
             foreach (Dictionary<string, string> job in AllJobs)
             {
@@ -35,6 +39,7 @@ namespace TechJobsConsole
                     values.Add(aValue);
                 }
             }
+            values.Sort();
             return values;
         }
 
@@ -139,17 +144,35 @@ namespace TechJobsConsole
             return rowValues.ToArray();
         }
 
-        public static void FindByValue()
+        public static List<Dictionary<string, string>> FindByValue(string value)
         {
 
+            // load data, if not already loaded
+            LoadData();
 
+            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+
+            foreach (Dictionary<string, string> row in AllJobs)
+            {
+
+
+                foreach (var item in row.Values)
+                {
+
+                    if (item.ToLower() == value.ToLower())
+                    {
+                        jobs.Add(row);
+                        break;
+                    }
+                    }
+               
+
+            }
+
+            return jobs;
         }
-
-
-
-
-
     }
-
-
 }
+
+
+
